@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export default function RAGPlayground() {
   const [file, setFile] = useState(null);
-  const [question, setQuestion] = useState('Different service types of Shinkansen?');
+  const [question, setQuestion] = useState('');
   const [chunkSize, setChunkSize] = useState(700);
   const [chunkOverlap, setChunkOverlap] = useState(100);
   const [topK, setTopK] = useState(3);
@@ -62,10 +62,10 @@ export default function RAGPlayground() {
           <h2>Configuration</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>Gemini API Key (leave empty to use .env)</label>
+              <label>Gemini API Key</label>
               <input 
                 type="password" 
-                placeholder="AIzaSy..." 
+                placeholder="Paste your API Key here" 
                 value={apiKey} 
                 onChange={(e) => setApiKey(e.target.value)} 
               />
