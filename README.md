@@ -10,19 +10,6 @@ A premium, interactive full-stack web application built with Next.js for testing
 - **Premium Interface**: A modern, sleek, and highly responsive user interface designed for an optimal AI testing experience.
 - **Vercel-Ready**: Fully configured for seamless deployment on Vercel.
 
-## Getting Started
+## Live Demo
 
-First, make sure you have your API keys ready (e.g., your Gemini API Key) and placed in a local `.env.local` file at the root of the project:
-
-```env
-GEMINI_API_KEY=your_api_key_here
-```
-
-Then, install dependencies and run the development server:
-
-```bash
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to see the application in action.
+Check out the live application here: [https://rag-playgorund.vercel.app/](https://rag-playgorund.vercel.app/)
