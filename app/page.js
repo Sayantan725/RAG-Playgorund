@@ -165,10 +165,20 @@ export default function RAGPlayground() {
                   <span className={styles.statValue}>{result.latency.generationMs}ms</span>
                 </div>
                 {result.usageMetadata && (
-                  <div className={styles.statCard}>
-                    <span className={styles.statLabel}>Tokens</span>
-                    <span className={styles.statValue}>{result.usageMetadata.totalTokenCount}</span>
-                  </div>
+                  <>
+                    <div className={styles.statCard}>
+                      <span className={styles.statLabel}>Embedding Tokens</span>
+                      <span className={styles.statValue}>{result.usageMetadata.embeddingTokens}</span>
+                    </div>
+                    <div className={styles.statCard}>
+                      <span className={styles.statLabel}>Generation Tokens</span>
+                      <span className={styles.statValue}>{result.usageMetadata.generationTokens}</span>
+                    </div>
+                    <div className={styles.statCard}>
+                      <span className={styles.statLabel}>Total Tokens</span>
+                      <span className={`${styles.statValue} ${styles.highlight}`}>{result.usageMetadata.totalTokens}</span>
+                    </div>
+                  </>
                 )}
               </div>
 

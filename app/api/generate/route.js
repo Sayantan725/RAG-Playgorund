@@ -108,10 +108,20 @@ export async function POST(req) {
 
     const result = await chatModel.generateContent(prompt);
     const answer = result.response.text();
-    const usageMetadata = result.response.usageMetadata || null;
+    const genUsage = result.response.usageMetadata || null;
 
     const genEnd = performance.now();
     const generationMs = Math.round(genEnd - genStart);
+
+    let embeddingTokens = 0;
+    try {
+      const embedCountRes = await embedModel.countTokens([...chunks, question]);
+      embeddingTokens = embedCountRes.totalTokens;
+    } catch(e) {
+      console.error("Failed to count embedding tokens:", e);
+    }
+
+    const generationTokens = genUsage ? genUsage.totalTokenCount : 0;
 
     return NextResponse.json({
       answer,
@@ -122,7 +132,11 @@ export async function POST(req) {
         totalMs: retrievalMs + generationMs
       },
       confidenceScore,
-      usageMetadata
+      usageMetadata: {
+        embeddingTokens,
+        generationTokens,
+        totalTokens: embeddingTokens + generationTokens
+      }
     });
 
   } catch (error) {
