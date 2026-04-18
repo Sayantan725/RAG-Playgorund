@@ -108,6 +108,7 @@ export async function POST(req) {
 
     const result = await chatModel.generateContent(prompt);
     const answer = result.response.text();
+    const usageMetadata = result.response.usageMetadata || null;
 
     const genEnd = performance.now();
     const generationMs = Math.round(genEnd - genStart);
@@ -120,7 +121,8 @@ export async function POST(req) {
         generationMs,
         totalMs: retrievalMs + generationMs
       },
-      confidenceScore
+      confidenceScore,
+      usageMetadata
     });
 
   } catch (error) {

@@ -164,6 +164,12 @@ export default function RAGPlayground() {
                   <span className={styles.statLabel}>Generation Latency</span>
                   <span className={styles.statValue}>{result.latency.generationMs}ms</span>
                 </div>
+                {result.usageMetadata && (
+                  <div className={styles.statCard}>
+                    <span className={styles.statLabel}>Tokens</span>
+                    <span className={styles.statValue}>{result.usageMetadata.totalTokenCount}</span>
+                  </div>
+                )}
               </div>
 
               <div className={styles.answerBox}>
